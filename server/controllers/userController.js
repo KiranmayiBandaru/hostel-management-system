@@ -14,7 +14,6 @@ async function createStudent(req, res){
          if(existingUser)
             return res.status(400).json({message : "Email already existing"})
 
-
          const hash = await bcrypt.hash(process.env.DEFAULT_STUDENT_PASSWORD, 10)
          const newUser = await User.create({name , email ,password: hash , phone, role : 'student'})
 
@@ -31,7 +30,7 @@ async function createStudent(req, res){
          return res.status(201).json({message : "student profile created successfully"})
 
       }catch(err){
-          return res.status(500).json({message : "Unable to create student"})
+          return res.status(500).json({message : err.message})
       }
 }
 

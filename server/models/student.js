@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const studentSchema = Schema({
 
-    UserId :{
+    userId :{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
@@ -21,14 +21,15 @@ const studentSchema = Schema({
     },
     address : {
         type : String,
-        required : true
+        required : false,
+        default : ''
     },
     
     dateOfJoining : Date,
     bedId : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Bed',
-        required : true
+        default : null
     },
     blockId : {
         type: mongoose.Schema.Types.ObjectId,
