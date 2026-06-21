@@ -3,7 +3,7 @@ require('dotenv').config()
 const connectDB = require("./config/db.js")
 const authRoutes = require('./routes/authRoutes')
 const userRoutes = require('./routes/userRoute')
-
+const blockRoutes = require('./routes/blockRoute')
 connectDB();
 
 const app = express()
@@ -16,6 +16,8 @@ app.get('/', (req, res)=>{
 app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/admin', userRoutes)
+app.use('/api/blocks', blockRoutes)
+
 const PORT = process.env.PORT
 app.listen(PORT , ()=>{ 
     console.log(`the server is listening `)
