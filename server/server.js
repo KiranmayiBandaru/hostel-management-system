@@ -15,9 +15,8 @@ app.get('/', (req, res)=>{
 })
 app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
-
+app.use('/api/admin', userRoutes)
 const PORT = process.env.PORT
-app.listen(PORT , ()=>{
-    
+app.listen(PORT , ()=>{ 
     console.log(`the server is listening `)
 })

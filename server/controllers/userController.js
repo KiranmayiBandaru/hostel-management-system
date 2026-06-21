@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 const studentProfile = require('../models/student')
-
+const adminProfile = require('../models/admin')
 async function createStudent(req, res){
       try{
          
@@ -34,4 +34,28 @@ async function createStudent(req, res){
       }
 }
 
-module.exports = { createStudent }
+async function createAdmin(req, res){
+      try{
+         const {name , email, phone} = req.body
+         if(!name || !email || !phone) 
+            return res.status(400).json({ message : "missing fields"})
+
+         const existingUser = await User.findOne({email : email})
+         if(existingUser) {
+             return res.status(400).json({message : "admin already exists"})
+         }
+         const hash = await bcrypt.hash(process.env.DEFAULT_ADMIN_PASSWORD, 10)
+         const newUser = await User.create({email , name, password : hash , phone, role : 'admin'})
+
+         await adminProfile.create({
+            userId:  newUser._id,
+            blockId : null,
+            adminPhoto : null 
+         })
+          return res.status(201).json({message : "admin successfully created"})
+      }catch(err){
+           return res.status(500).json({message : err.message})
+      }
+}
+
+module.exports = { createStudent , createAdmin}

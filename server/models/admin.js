@@ -8,7 +8,7 @@ const adminSchema = Schema({
        ref : 'User',
 
     },
-    adminName : String,
+   
     adminPhoto: {
         type: String,
         default: null
@@ -16,7 +16,7 @@ const adminSchema = Schema({
     blockId: {
         type: Schema.Types.ObjectId,
         ref: 'Block',
-        required: true
+        default : null 
     },
 },{ 
     timestamps: true 
