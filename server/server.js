@@ -6,6 +6,8 @@ const userRoutes = require('./routes/userRoute')
 const blockRoutes = require('./routes/blockRoute')
 const roomRoutes = require('./routes/roomRoute')
 const bedRoutes = require('./routes/bedRoute')
+const menuRoutes = require('./router/menuRoute')
+
 connectDB();
 
 const app = express()
@@ -22,6 +24,7 @@ app.use('/api/admin', userRoutes)
 app.use('/api/blocks', blockRoutes)
 app.use('/api/rooms' , roomRoutes)
 app.use('/api/beds' , bedRoutes)
+app.use('/api/menu', menuRoutes)
 
 const PORT = process.env.PORT
 app.listen(PORT , ()=>{ 
