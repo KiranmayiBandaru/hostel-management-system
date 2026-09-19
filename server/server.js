@@ -31,7 +31,7 @@ app.use('/api/menu', menuRoutes)
 app.use('/api/transfer-requests', transferRoutes)
 app.use('/api/students', removeStudentRoutes)
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT 
 app.listen(PORT , ()=>{ 
     console.log(`the server is listening to port ${PORT} `)
 })
